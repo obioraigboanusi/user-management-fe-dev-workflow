@@ -24,4 +24,7 @@ pre-push:
       run: npm run lint
 
     - name: build
-      run: npm run build
+      run: npm run build --noEmit
+
+    - name: Run Test Suite
+      run: npm run test:ci
