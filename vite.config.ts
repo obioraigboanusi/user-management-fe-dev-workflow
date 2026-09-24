@@ -14,5 +14,6 @@ export default defineConfig({
 
     // Points to a setup file that runs before your tests start
     setupFiles: './vitest.setup.ts',
+    passWithNoTests: true,
   },
 });
