@@ -1,0 +1,10 @@
+node_modules
+build
+dist
+*lock.json
+coverage
+.vite
+.env
+.env.*
+*.min.js
+*.min.css
