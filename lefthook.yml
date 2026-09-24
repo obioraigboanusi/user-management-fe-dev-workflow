@@ -13,3 +13,15 @@ pre-commit:
     - name: prettier
       glob: '*.{js,jsx,ts,tsx,json,css,md,yml,yaml}'
       run: npx prettier --check {staged_files}
+
+pre-push:
+  parallel: true
+  jobs:
+    - name: format
+      run: npm run format:check
+
+    - name: lint
+      run: npm run lint
+
+    - name: build
+      run: npm run build
