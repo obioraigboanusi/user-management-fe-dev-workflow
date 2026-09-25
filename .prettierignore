@@ -8,3 +8,6 @@ coverage
 .env.*
 *.min.js
 *.min.css
+
+# Ignore the MSW service worker file
+public/mockServiceWorker.js
