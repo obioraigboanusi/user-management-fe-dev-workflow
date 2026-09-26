@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import UserList from './UserList';
-import { mockUsers } from '../../mocks/users';
-import { createQueryWrapper } from '../../test/createQueryWrapper';
+import UserList from '../UserList';
+import { mockUsers } from '../../../mocks/users';
+import { createQueryWrapper } from '../../../test/createQueryWrapper';
 
 test('Renders a list of users fetched from api', async () => {
   render(<UserList />, {
