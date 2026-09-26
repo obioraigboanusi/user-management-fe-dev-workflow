@@ -1,10 +1,10 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { http, HttpResponse } from 'msw';
-import { server } from '../mocks/node';
-import { useUsers } from './useUsers';
-import { mockUsers } from '../mocks/users';
-import { createQueryWrapper } from '../test/createQueryWrapper';
+import { server } from '../../mocks/node';
+import { useUsers } from '../useUsers';
+import { mockUsers } from '../../mocks/users';
+import { createQueryWrapper } from '../../test/createQueryWrapper';
 
 describe('useUsers Custom Hook', () => {
   it('should handle a successful API response correctly', async () => {
@@ -30,9 +30,11 @@ describe('useUsers Custom Hook', () => {
 
   it('should catch and process errors correctly when the API fails', async () => {
     // mocking rejection
+
+    const errorRes = { message: 'Something went wrong' };
     server.use(
       http.get('/api/users', () => {
-        return new HttpResponse(null, { status: 500, statusText: 'Internal Server Error' });
+        return HttpResponse.json(errorRes, { status: 500 });
       }),
     );
 
@@ -46,8 +48,8 @@ describe('useUsers Custom Hook', () => {
       expect(result.current.isLoading).toBe(false);
     });
 
-    // 4. Assert: Verify the catch block generated a clean error string
+    // Verify the catch block generated a clean error string
     expect(result.current.data).toBeUndefined();
-    expect(result.current.error).toBeDefined();
+    expect(result.current.error).toBe(errorRes.message);
   });
 });

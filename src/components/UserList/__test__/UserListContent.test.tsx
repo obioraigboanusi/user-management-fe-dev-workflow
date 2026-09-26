@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { UserListContent } from './UserListContent';
-import { mockUsers } from '../../mocks/users';
+import { UserListContent } from '../UserListContent';
+import { mockUsers } from '../../../mocks/users';
 
 describe('UserListContent UI Component', () => {
   it('renders a loading message when isLoading is true', () => {
